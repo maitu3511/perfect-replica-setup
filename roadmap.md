@@ -17,3 +17,4 @@
 - [x] Add 9 distinct visiting card sample images for different businesses to portfolio
 - [x] Add four distinct business video/reel samples to Video & Reels
 - [x] Add six wedding creative image samples
+- [x] Reveal an About-style colourful image around the cursor on the home hero without changing existing content or animations

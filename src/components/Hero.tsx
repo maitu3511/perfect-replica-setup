@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Sparkles,
@@ -23,6 +23,8 @@ import { HomeHeroBackground } from "./HomeHeroBackground";
 import { AGENCY_CONFIG } from "../data/agencyData";
 import { getWhatsAppUrl } from "../utils/whatsapp";
 import homeHero from "../assets/heroes/home-hero.jpg";
+import aboutHeroWebp from "../assets/about-agency-reference-clean.webp";
+import aboutHeroJpg from "../assets/about-agency-reference-clean.jpg";
 
 // Dynamic Services List with Concise 1-Line Titles, Icons, Tags, and Live Impact Metrics
 const HERO_SERVICES = [
@@ -93,6 +95,21 @@ export const Hero: React.FC<HeroProps> = ({
   const [serviceIndex, setServiceIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(true);
   const [typingSpeed, setTypingSpeed] = useState(2500);
+  const revealRef = useRef<HTMLDivElement>(null);
+
+  const handleHeroPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType === "touch") return;
+    const reveal = revealRef.current;
+    if (!reveal) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    reveal.style.setProperty("--reveal-x", `${event.clientX - bounds.left}px`);
+    reveal.style.setProperty("--reveal-y", `${event.clientY - bounds.top}px`);
+    reveal.style.opacity = "1";
+  };
+
+  const hideHeroReveal = () => {
+    if (revealRef.current) revealRef.current.style.opacity = "0";
+  };
 
   // Typewriter effect: types letter-by-letter, pauses, deletes, and cycles through services
   useEffect(() => {
@@ -135,6 +152,9 @@ export const Hero: React.FC<HeroProps> = ({
     <section
       className="relative pt-[72px] sm:pt-[78px] pb-16 lg:pt-[82px] lg:pb-24 overflow-hidden bg-[#FAF9F5] text-[#111111] border-b border-[#E8E1D0] isolate"
       id="hero-section"
+      onPointerMove={handleHeroPointerMove}
+      onPointerLeave={hideHeroReveal}
+      onPointerCancel={hideHeroReveal}
     >
       {/* Background Image with Ken Burns / Zoom Effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden -z-20">
@@ -158,6 +178,24 @@ export const Hero: React.FC<HeroProps> = ({
 
       {/* Dynamic Cyber-Matrix & Concentric Core Animation Background */}
       <HomeHeroBackground />
+
+      {/* The About image is only exposed under the cursor; all existing background animation stays in place. */}
+      <div
+        ref={revealRef}
+        aria-hidden="true"
+        className="absolute inset-0 z-[1] pointer-events-none overflow-hidden opacity-0 motion-safe:transition-opacity motion-safe:duration-300 [mask-image:radial-gradient(circle_230px_at_var(--reveal-x,-500px)_var(--reveal-y,-500px),black_24%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_230px_at_var(--reveal-x,-500px)_var(--reveal-y,-500px),black_24%,transparent_100%)]"
+      >
+        <picture className="block w-full h-full">
+          <source srcSet={aboutHeroWebp} type="image/webp" />
+          <img
+            src={aboutHeroJpg}
+            alt=""
+            className="w-full h-full object-cover object-center"
+            decoding="async"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-background/35" />
+      </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-7 z-10">
         {/* Top Eyebrow Badge: Rating & Google Partner */}
