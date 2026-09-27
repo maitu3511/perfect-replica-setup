@@ -18,4 +18,4 @@
 - [x] Add four distinct business video/reel samples to Video & Reels
 - [x] Add six wedding creative image samples
 - [x] Reveal an About-style colourful image around the cursor on the home hero without changing existing content or animations
-- [ ] Apply Fonarto to main headings and Glacial Indifference to subheadings, paragraphs, and remaining text without other visual changes
+- [x] Apply Fonarto to main headings and Glacial Indifference to subheadings, paragraphs, and remaining text without other visual changes
