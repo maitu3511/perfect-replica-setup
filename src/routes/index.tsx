@@ -28,11 +28,6 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://digibasera.com/" },
-      {
-        property: "og:image",
-        content:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-      },
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
@@ -42,11 +37,6 @@ export const Route = createFileRoute("/")({
         name: "twitter:description",
         content:
           "Explore live client websites, high-engagement social media campaigns, and verified SEO results from DigiBasera in Rajkot, Gujarat.",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
       },
       { name: "geo.region", content: "IN-GJ" },
       { name: "geo.placename", content: "Rajkot, Gujarat, India" },
