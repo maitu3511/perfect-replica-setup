@@ -10,3 +10,5 @@
 > the editor, so keep the branch in a working state.
 
 <!-- LOVABLE:END -->
+
+- Portfolio samples are defined in `src/data/portfolioData.ts`; merge newly shipped sample IDs with stored items so existing admin changes remain intact while new work appears for returning visitors.

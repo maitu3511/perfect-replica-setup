@@ -1,4 +1,17 @@
 import { PortfolioItem } from "../types";
+import screenFixingPreview from "../assets/site-screenfixing.png.asset.json";
+import eyewearOffer from "../assets/social-posts/offers-1.jpg";
+import bakeryOffer from "../assets/social-posts/offers-2.jpg";
+import fitnessOffer from "../assets/social-posts/offers-3.jpg";
+import interiorsPromotion from "../assets/social-posts/offers-4.jpg";
+import cafePromotion from "../assets/social-posts/promos-1.jpg";
+import autoPromotion from "../assets/social-posts/promos-2.jpg";
+import dentalPromotion from "../assets/social-posts/promos-3.jpg";
+import floristPromotion from "../assets/social-posts/promos-4.jpg";
+import jewelleryDiwali from "../assets/social-posts/festivals-1.jpg";
+import restaurantHoli from "../assets/social-posts/festivals-2.jpg";
+import fashionNavratri from "../assets/social-posts/festivals-3.jpg";
+import sweetsEid from "../assets/social-posts/festivals-4.jpg";
 
 export const PORTFOLIO_STORAGE_KEY = "digibasera_portfolio_verified_clients_v11";
 
@@ -114,6 +127,15 @@ const SAMPLE_SEEDS: SampleSeed[] = [
     imageUrl: "/assets/images/site-premiumpackco.jpg",
     industry: "Packaging Manufacturer",
   },
+  {
+    ...WEB,
+    id: "screen-fixing-live",
+    title: "Screen Fixing",
+    websiteUrl: "https://www.screenfixing.in",
+    displayUrl: "www.screenfixing.in",
+    imageUrl: screenFixingPreview.url,
+    industry: "Device Repair",
+  },
 
   // Social Media Posts
   {
@@ -176,6 +198,19 @@ const SAMPLE_SEEDS: SampleSeed[] = [
     title: "Google Ads Service Post",
     imageUrl: "/assets/images/sample-social-google-ads.jpg",
   },
+  // Additional concept creatives: offers, business promotions, and festival greetings.
+  { ...SOCIAL, id: "social-new-eyewear-offer", title: "Eyewear Store Offer Post", imageUrl: eyewearOffer },
+  { ...SOCIAL, id: "social-new-bakery-offer", title: "Bakery Fresh Bakes Offer Post", imageUrl: bakeryOffer },
+  { ...SOCIAL, id: "social-new-fitness-offer", title: "Fitness Studio Joining Offer Post", imageUrl: fitnessOffer },
+  { ...SOCIAL, id: "social-new-interiors-promotion", title: "Home Interiors Promotion Post", imageUrl: interiorsPromotion },
+  { ...SOCIAL, id: "social-new-cafe-promotion", title: "Cafe Business Promotion Post", imageUrl: cafePromotion },
+  { ...SOCIAL, id: "social-new-auto-promotion", title: "Auto Detailing Promotion Post", imageUrl: autoPromotion },
+  { ...SOCIAL, id: "social-new-dental-promotion", title: "Dental Clinic Promotion Post", imageUrl: dentalPromotion },
+  { ...SOCIAL, id: "social-new-florist-promotion", title: "Florist Business Promotion Post", imageUrl: floristPromotion },
+  { ...SOCIAL, id: "social-new-jewellery-diwali", title: "Jewellery Boutique Diwali Wish Post", imageUrl: jewelleryDiwali },
+  { ...SOCIAL, id: "social-new-restaurant-holi", title: "Restaurant Holi Wish Post", imageUrl: restaurantHoli },
+  { ...SOCIAL, id: "social-new-fashion-navratri", title: "Fashion Boutique Navratri Wish Post", imageUrl: fashionNavratri },
+  { ...SOCIAL, id: "social-new-sweets-eid", title: "Sweet Shop Eid Wish Post", imageUrl: sweetsEid },
 
   // SEO Reports & Charts
   {
@@ -381,7 +416,14 @@ export const loadStoredPortfolioItems = (): PortfolioItem[] => {
     if (data) {
       const parsed = JSON.parse(data);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+        // Preserve saved edits while adding only this release's new samples.
+        const existingIds = new Set(parsed.map((item: PortfolioItem) => item.id));
+        const newSamples = DEFAULT_PORTFOLIO_ITEMS.filter(
+          (item) =>
+            (item.id === "screen-fixing-live" || item.id.startsWith("social-new-")) &&
+            !existingIds.has(item.id),
+        );
+        return [...parsed, ...newSamples];
       }
     }
   } catch (err) {
