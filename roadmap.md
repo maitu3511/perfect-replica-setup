@@ -15,5 +15,5 @@
 - [x] Add 12 distinct business offer, promotion, and festival social post samples
 - [x] Add 7 distinct logo sample images for different businesses to portfolio
 - [x] Add 9 distinct visiting card sample images for different businesses to portfolio
-- [ ] Add four distinct business video/reel samples to Video & Reels
-- [ ] Add six wedding creative image samples
+- [x] Add four distinct business video/reel samples to Video & Reels
+- [x] Add six wedding creative image samples
