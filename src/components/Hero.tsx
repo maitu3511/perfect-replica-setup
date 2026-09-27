@@ -23,8 +23,7 @@ import { HomeHeroBackground } from "./HomeHeroBackground";
 import { AGENCY_CONFIG } from "../data/agencyData";
 import { getWhatsAppUrl } from "../utils/whatsapp";
 import homeHero from "../assets/heroes/home-hero.jpg";
-import aboutHeroWebp from "../assets/about-agency-reference-clean.webp";
-import aboutHeroJpg from "../assets/about-agency-reference-clean.jpg";
+import heroCursorRevealAsset from "../assets/hero-cursor-reveal.jpg.asset.json";
 
 // Dynamic Services List with Concise 1-Line Titles, Icons, Tags, and Live Impact Metrics
 const HERO_SERVICES = [
@@ -185,15 +184,12 @@ export const Hero: React.FC<HeroProps> = ({
         aria-hidden="true"
         className="absolute inset-0 z-[1] pointer-events-none overflow-hidden opacity-0 motion-safe:transition-opacity motion-safe:duration-300 [mask-image:radial-gradient(circle_230px_at_var(--reveal-x,-500px)_var(--reveal-y,-500px),black_24%,transparent_100%)] [-webkit-mask-image:radial-gradient(circle_230px_at_var(--reveal-x,-500px)_var(--reveal-y,-500px),black_24%,transparent_100%)]"
       >
-        <picture className="block w-full h-full">
-          <source srcSet={aboutHeroWebp} type="image/webp" />
-          <img
-            src={aboutHeroJpg}
-            alt=""
-            className="w-full h-full object-cover object-center"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src={heroCursorRevealAsset.url}
+          alt=""
+          className="w-full h-full object-cover object-center"
+          decoding="async"
+        />
         <div className="absolute inset-0 bg-background/35" />
       </div>
 
