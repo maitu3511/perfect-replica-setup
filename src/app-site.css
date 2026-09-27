@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Fonarto";
   src: url("/fonts/Fonarto.ttf") format("truetype");
-  font-weight: 100 900;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -159,32 +159,24 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Allow clean readable typography inside headings */
-  h1 .font-sans,
-  h1 .font-body,
-  .hero-title .font-sans,
-  .font-fonarto .font-sans,
-  .main-heading .font-sans {
+  /* Decorative highlights outside main titles use the same readable companion font. */
+  .font-serif {
     font-family:
-      "Plus Jakarta Sans",
       "Glacial Indifference",
-      "Manrope",
-      sans-serif;
-  }
-
-  /* Map decorative serif / highlight elements to clean modern font */
-  .font-serif,
-  h1 .font-serif,
-  .main-heading .font-serif,
-  .font-fonarto .font-serif {
-    font-family:
-      "Plus Jakarta Sans",
-      "Outfit",
       -apple-system,
       BlinkMacSystemFont,
       "Segoe UI",
       Roboto,
       sans-serif;
+  }
+
+  /* Nested color/highlight spans must not switch a main heading back to the body font. */
+  h1 :is(span, a, .font-sans, .font-body, .font-serif),
+  .hero-title :is(span, a, .font-sans, .font-body, .font-serif),
+  .hero-heading :is(span, a, .font-sans, .font-body, .font-serif),
+  .main-heading :is(span, a, .font-sans, .font-body, .font-serif),
+  .major-section-title :is(span, a, .font-sans, .font-body, .font-serif) {
+    font-family: "Fonarto", "Glacial Indifference", sans-serif;
   }
 
   /* Numeric Badges, ROAS metrics, Stat Percentages, Counters & Mono elements -> Fonarto */
