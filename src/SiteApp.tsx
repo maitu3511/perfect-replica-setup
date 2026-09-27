@@ -149,10 +149,15 @@ function AppContent({
       }
     };
 
-    if (isStandaloneRoute) return;
-
     if (window.location.hash) {
-      handleHashChange();
+      // Preserve old shared links while canonical page links use real paths.
+      const oldPage = window.location.hash.slice(1).toLowerCase();
+      if (oldPage && PAGE_SEO_CONFIG[oldPage] && oldPage !== "admin") {
+        window.history.replaceState(null, "", `/${oldPage}`);
+        setCurrentPage(oldPage as PageType);
+      } else if (!isStandaloneRoute) {
+        handleHashChange();
+      }
     }
 
     window.addEventListener("hashchange", handleHashChange);
@@ -163,15 +168,13 @@ function AppContent({
     if (page !== "services") {
       setServiceTargetId(null);
     }
-    // Dedicated SEO routes (e.g. /services/seo) hand navigation back to the
-    // main app URL so behaviour stays identical to the original site.
-    if (isStandaloneRoute) {
+    // Use an address per page so links can be opened directly and indexed.
+    if (page !== "admin") {
       if (page === "services") {
         window.location.href = "/services";
       } else {
-        window.location.href = `/${page === "home" ? "" : `#${page}`}`;
+        window.location.href = page === "home" ? "/" : `/${page}`;
       }
-      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     setCurrentPage(page);
@@ -192,7 +195,7 @@ function AppContent({
 
   const handleNavigatePortfolio = (category: "Websites" | "SEO" | "All") => {
     if (isStandaloneRoute) {
-      window.location.href = "/#portfolio";
+      window.location.href = "/portfolio";
       return;
     }
     setPortfolioCategory(category);
