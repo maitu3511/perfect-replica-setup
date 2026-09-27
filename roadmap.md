@@ -11,3 +11,5 @@
 - [x] Replace the About section image with a flexible carousel
 - [x] Slow the home services auto-scroll
 - [x] Reserve fixed typewriter space to prevent layout shifting
+- [ ] Add Screen Fixing under Websites without changing the portfolio design
+- [ ] Add 12 distinct business offer, promotion, and festival social post samples
