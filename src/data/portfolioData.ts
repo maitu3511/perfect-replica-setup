@@ -199,18 +199,18 @@ const SAMPLE_SEEDS: SampleSeed[] = [
     imageUrl: "/assets/images/sample-social-google-ads.jpg",
   },
   // Additional concept creatives: offers, business promotions, and festival greetings.
-  { ...SOCIAL, id: "social-eyewear-offer", title: "Eyewear Store Offer Post", imageUrl: eyewearOffer },
-  { ...SOCIAL, id: "social-bakery-offer", title: "Bakery Fresh Bakes Offer Post", imageUrl: bakeryOffer },
-  { ...SOCIAL, id: "social-fitness-offer", title: "Fitness Studio Joining Offer Post", imageUrl: fitnessOffer },
-  { ...SOCIAL, id: "social-interiors-promotion", title: "Home Interiors Promotion Post", imageUrl: interiorsPromotion },
-  { ...SOCIAL, id: "social-cafe-promotion", title: "Cafe Business Promotion Post", imageUrl: cafePromotion },
-  { ...SOCIAL, id: "social-auto-promotion", title: "Auto Detailing Promotion Post", imageUrl: autoPromotion },
-  { ...SOCIAL, id: "social-dental-promotion", title: "Dental Clinic Promotion Post", imageUrl: dentalPromotion },
-  { ...SOCIAL, id: "social-florist-promotion", title: "Florist Business Promotion Post", imageUrl: floristPromotion },
-  { ...SOCIAL, id: "social-jewellery-diwali", title: "Jewellery Boutique Diwali Wish Post", imageUrl: jewelleryDiwali },
-  { ...SOCIAL, id: "social-restaurant-holi", title: "Restaurant Holi Wish Post", imageUrl: restaurantHoli },
-  { ...SOCIAL, id: "social-fashion-navratri", title: "Fashion Boutique Navratri Wish Post", imageUrl: fashionNavratri },
-  { ...SOCIAL, id: "social-sweets-eid", title: "Sweet Shop Eid Wish Post", imageUrl: sweetsEid },
+  { ...SOCIAL, id: "social-new-eyewear-offer", title: "Eyewear Store Offer Post", imageUrl: eyewearOffer },
+  { ...SOCIAL, id: "social-new-bakery-offer", title: "Bakery Fresh Bakes Offer Post", imageUrl: bakeryOffer },
+  { ...SOCIAL, id: "social-new-fitness-offer", title: "Fitness Studio Joining Offer Post", imageUrl: fitnessOffer },
+  { ...SOCIAL, id: "social-new-interiors-promotion", title: "Home Interiors Promotion Post", imageUrl: interiorsPromotion },
+  { ...SOCIAL, id: "social-new-cafe-promotion", title: "Cafe Business Promotion Post", imageUrl: cafePromotion },
+  { ...SOCIAL, id: "social-new-auto-promotion", title: "Auto Detailing Promotion Post", imageUrl: autoPromotion },
+  { ...SOCIAL, id: "social-new-dental-promotion", title: "Dental Clinic Promotion Post", imageUrl: dentalPromotion },
+  { ...SOCIAL, id: "social-new-florist-promotion", title: "Florist Business Promotion Post", imageUrl: floristPromotion },
+  { ...SOCIAL, id: "social-new-jewellery-diwali", title: "Jewellery Boutique Diwali Wish Post", imageUrl: jewelleryDiwali },
+  { ...SOCIAL, id: "social-new-restaurant-holi", title: "Restaurant Holi Wish Post", imageUrl: restaurantHoli },
+  { ...SOCIAL, id: "social-new-fashion-navratri", title: "Fashion Boutique Navratri Wish Post", imageUrl: fashionNavratri },
+  { ...SOCIAL, id: "social-new-sweets-eid", title: "Sweet Shop Eid Wish Post", imageUrl: sweetsEid },
 
   // SEO Reports & Charts
   {
@@ -378,10 +378,7 @@ export const loadStoredPortfolioCategories = (): PortfolioCategoryMeta[] => {
     if (data) {
       const parsed = JSON.parse(data);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        // Keep existing customizations while making newly added samples visible to returning visitors.
-        const existingIds = new Set(parsed.map((item: PortfolioItem) => item.id));
-        const newSamples = DEFAULT_PORTFOLIO_ITEMS.filter((item) => !existingIds.has(item.id));
-        return [...parsed, ...newSamples];
+        return parsed;
       }
     }
   } catch (err) {
@@ -419,7 +416,14 @@ export const loadStoredPortfolioItems = (): PortfolioItem[] => {
     if (data) {
       const parsed = JSON.parse(data);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        return parsed;
+        // Preserve saved edits while adding only this release's new samples.
+        const existingIds = new Set(parsed.map((item: PortfolioItem) => item.id));
+        const newSamples = DEFAULT_PORTFOLIO_ITEMS.filter(
+          (item) =>
+            (item.id === "screen-fixing-live" || item.id.startsWith("social-new-")) &&
+            !existingIds.has(item.id),
+        );
+        return [...parsed, ...newSamples];
       }
     }
   } catch (err) {
