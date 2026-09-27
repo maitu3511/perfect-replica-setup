@@ -13,3 +13,5 @@
 - [x] Reserve fixed typewriter space to prevent layout shifting
 - [x] Add Screen Fixing under Websites without changing the portfolio design
 - [x] Add 12 distinct business offer, promotion, and festival social post samples
+- [x] Add 7 distinct logo sample images for different businesses to portfolio
+- [x] Add 9 distinct visiting card sample images for different businesses to portfolio

@@ -12,6 +12,22 @@ import jewelleryDiwali from "../assets/social-posts/festivals-1.jpg";
 import restaurantHoli from "../assets/social-posts/festivals-2.jpg";
 import fashionNavratri from "../assets/social-posts/festivals-3.jpg";
 import sweetsEid from "../assets/social-posts/festivals-4.jpg";
+import solsticeLogo from "../assets/branding-samples/logo-solstice-cafe.jpg";
+import vantageLogo from "../assets/branding-samples/logo-vantage-architecture.jpg";
+import bloomfieldLogo from "../assets/branding-samples/logo-bloomfield-florist.jpg";
+import axiomLogo from "../assets/branding-samples/logo-axiom-fitness.jpg";
+import aurelLogo from "../assets/branding-samples/logo-aurel-jewellery.jpg";
+import novaLogo from "../assets/branding-samples/logo-nova-repair.jpg";
+import harvestLogo from "../assets/branding-samples/logo-harvest-organic.jpg";
+import solsticeCard from "../assets/branding-samples/card-solstice-cafe.jpg";
+import vantageCard from "../assets/branding-samples/card-vantage-architecture.jpg";
+import bloomfieldCard from "../assets/branding-samples/card-bloomfield-florist.jpg";
+import axiomCard from "../assets/branding-samples/card-axiom-fitness.jpg";
+import aurelCard from "../assets/branding-samples/card-aurel-jewellery.jpg";
+import novaCard from "../assets/branding-samples/card-nova-repair.jpg";
+import harvestCard from "../assets/branding-samples/card-harvest-organic.jpg";
+import nestCard from "../assets/branding-samples/card-nest-real-estate.jpg";
+import vivaCard from "../assets/branding-samples/card-viva-salon.jpg";
 
 export const PORTFOLIO_STORAGE_KEY = "digibasera_portfolio_verified_clients_v11";
 
@@ -271,6 +287,23 @@ const SAMPLE_SEEDS: SampleSeed[] = [
     title: "Corporate Visiting Card Design",
     imageUrl: "/assets/images/brand-visiting-card-2.jpg",
   },
+  // Distinct branding concepts for nine business types.
+  { ...BRAND, id: "brand-new-logo-solstice", title: "Solstice Cafe Logo Design", imageUrl: solsticeLogo, industry: "Boutique Cafe" },
+  { ...BRAND, id: "brand-new-logo-vantage", title: "Vantage Architecture Logo Design", imageUrl: vantageLogo, industry: "Architecture" },
+  { ...BRAND, id: "brand-new-logo-bloomfield", title: "Bloomfield Florist Logo Design", imageUrl: bloomfieldLogo, industry: "Florist" },
+  { ...BRAND, id: "brand-new-logo-axiom", title: "Axiom Fitness Logo Design", imageUrl: axiomLogo, industry: "Fitness Club" },
+  { ...BRAND, id: "brand-new-logo-aurel", title: "Aurel Jewellery Logo Design", imageUrl: aurelLogo, industry: "Fine Jewellery" },
+  { ...BRAND, id: "brand-new-logo-nova", title: "Nova Repair Logo Design", imageUrl: novaLogo, industry: "Technology Repair" },
+  { ...BRAND, id: "brand-new-logo-harvest", title: "Harvest Organic Logo Design", imageUrl: harvestLogo, industry: "Organic Food" },
+  { ...BRAND, id: "brand-new-card-solstice", title: "Solstice Cafe Visiting Card", imageUrl: solsticeCard, industry: "Boutique Cafe" },
+  { ...BRAND, id: "brand-new-card-vantage", title: "Vantage Architecture Visiting Card", imageUrl: vantageCard, industry: "Architecture" },
+  { ...BRAND, id: "brand-new-card-bloomfield", title: "Bloomfield Florist Visiting Card", imageUrl: bloomfieldCard, industry: "Florist" },
+  { ...BRAND, id: "brand-new-card-axiom", title: "Axiom Fitness Visiting Card", imageUrl: axiomCard, industry: "Fitness Club" },
+  { ...BRAND, id: "brand-new-card-aurel", title: "Aurel Jewellery Visiting Card", imageUrl: aurelCard, industry: "Fine Jewellery" },
+  { ...BRAND, id: "brand-new-card-nova", title: "Nova Repair Visiting Card", imageUrl: novaCard, industry: "Technology Repair" },
+  { ...BRAND, id: "brand-new-card-harvest", title: "Harvest Organic Visiting Card", imageUrl: harvestCard, industry: "Organic Food" },
+  { ...BRAND, id: "brand-new-card-nest", title: "Nest Real Estate Visiting Card", imageUrl: nestCard, industry: "Real Estate" },
+  { ...BRAND, id: "brand-new-card-viva", title: "Viva Salon Visiting Card", imageUrl: vivaCard, industry: "Beauty Salon" },
   {
     ...BRAND,
     id: "brand-banner-gym",
@@ -420,7 +453,7 @@ export const loadStoredPortfolioItems = (): PortfolioItem[] => {
         const existingIds = new Set(parsed.map((item: PortfolioItem) => item.id));
         const newSamples = DEFAULT_PORTFOLIO_ITEMS.filter(
           (item) =>
-            (item.id === "screen-fixing-live" || item.id.startsWith("social-new-")) &&
+            (item.id === "screen-fixing-live" || item.id.startsWith("social-new-") || item.id.startsWith("brand-new-")) &&
             !existingIds.has(item.id),
         );
         return [...parsed, ...newSamples];
