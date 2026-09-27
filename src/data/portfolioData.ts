@@ -28,6 +28,20 @@ import novaCard from "../assets/branding-samples/card-nova-repair.jpg";
 import harvestCard from "../assets/branding-samples/card-harvest-organic.jpg";
 import nestCard from "../assets/branding-samples/card-nest-real-estate.jpg";
 import vivaCard from "../assets/branding-samples/card-viva-salon.jpg";
+import cafeReel from "../assets/portfolio-media/cafe-reel.webm.asset.json";
+import fitnessReel from "../assets/portfolio-media/fitness-reel.webm.asset.json";
+import jewelleryReel from "../assets/portfolio-media/jewellery-reel.webm.asset.json";
+import interiorsReel from "../assets/portfolio-media/interiors-reel.webm.asset.json";
+import cafePoster from "../assets/portfolio-media/cafe-poster.jpg.asset.json";
+import fitnessPoster from "../assets/portfolio-media/fitness-poster.jpg.asset.json";
+import jewelleryPoster from "../assets/portfolio-media/jewellery-poster.jpg.asset.json";
+import interiorsPoster from "../assets/portfolio-media/interiors-poster.jpg.asset.json";
+import invitationSuite from "../assets/wedding-samples/invitation-suite.jpg";
+import varmalaCeremony from "../assets/wedding-samples/varmala-ceremony.jpg";
+import weddingAlbum from "../assets/wedding-samples/wedding-album.jpg";
+import preWeddingPortrait from "../assets/wedding-samples/pre-wedding-portrait.jpg";
+import mehndiCreative from "../assets/wedding-samples/mehndi-creative.jpg";
+import receptionStage from "../assets/wedding-samples/reception-stage.jpg";
 
 export const PORTFOLIO_STORAGE_KEY = "digibasera_portfolio_verified_clients_v11";
 
@@ -346,6 +360,10 @@ const SAMPLE_SEEDS: SampleSeed[] = [
     imageUrl: "/assets/images/portfolio-ai-motion-thumb.jpg",
     videoUrl: "/assets/videos/portfolio-ai-motion.mp4",
   },
+  { ...VIDEO, id: "video-new-cafe", title: "Cafe Social Reel", imageUrl: cafePoster.url, videoUrl: cafeReel.url, industry: "Cafe & Hospitality" },
+  { ...VIDEO, id: "video-new-fitness", title: "Fitness Studio Reel", imageUrl: fitnessPoster.url, videoUrl: fitnessReel.url, industry: "Fitness" },
+  { ...VIDEO, id: "video-new-jewellery", title: "Jewellery Boutique Reel", imageUrl: jewelleryPoster.url, videoUrl: jewelleryReel.url, industry: "Jewellery" },
+  { ...VIDEO, id: "video-new-interiors", title: "Interior Design Reel", imageUrl: interiorsPoster.url, videoUrl: interiorsReel.url, industry: "Interior Design" },
 
   // Wedding Creative
   {
@@ -378,6 +396,12 @@ const SAMPLE_SEEDS: SampleSeed[] = [
     title: "Wedding Video Editing",
     imageUrl: "/assets/images/sample-wedding-editing.jpg",
   },
+  { ...WEDDING, id: "wedding-new-invitation", title: "Wedding Invitation Suite", imageUrl: invitationSuite },
+  { ...WEDDING, id: "wedding-new-varmala", title: "Varmala Ceremony Creative", imageUrl: varmalaCeremony },
+  { ...WEDDING, id: "wedding-new-album", title: "Wedding Photo Album", imageUrl: weddingAlbum },
+  { ...WEDDING, id: "wedding-new-prewedding", title: "Pre-Wedding Portrait", imageUrl: preWeddingPortrait },
+  { ...WEDDING, id: "wedding-new-mehndi", title: "Mehndi Ceremony Creative", imageUrl: mehndiCreative },
+  { ...WEDDING, id: "wedding-new-reception", title: "Wedding Reception Creative", imageUrl: receptionStage },
 ];
 
 export const DEFAULT_PORTFOLIO_ITEMS: PortfolioItem[] = SAMPLE_SEEDS.map((seed, i) =>
@@ -453,7 +477,7 @@ export const loadStoredPortfolioItems = (): PortfolioItem[] => {
         const existingIds = new Set(parsed.map((item: PortfolioItem) => item.id));
         const newSamples = DEFAULT_PORTFOLIO_ITEMS.filter(
           (item) =>
-            (item.id === "screen-fixing-live" || item.id.startsWith("social-new-") || item.id.startsWith("brand-new-")) &&
+            (item.id === "screen-fixing-live" || item.id.startsWith("social-new-") || item.id.startsWith("brand-new-") || item.id.startsWith("video-new-") || item.id.startsWith("wedding-new-")) &&
             !existingIds.has(item.id),
         );
         return [...parsed, ...newSamples];
