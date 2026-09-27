@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenC
             {/* Luxury Logo */}
             <div className="flex items-center gap-3">
               <a
-                href="#home"
+                href="/"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick("home");
@@ -86,9 +86,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenC
                   currentPage === item.id ||
                   (item.id === "training" && currentPage === "education");
                 return (
-                  <button
+                  <a
                     key={item.id}
-                    onClick={() => handleNavClick(item.id)}
+                    href={item.id === "home" ? "/" : item.id === "services" ? "/services" : `/${item.id}`}
+                    onClick={(event) => { event.preventDefault(); handleNavClick(item.id); }}
                     className={`px-3 py-2 rounded-lg text-[13.5px] font-medium tracking-wide transition-all relative flex items-center gap-1.5 ${
                       isActive
                         ? "text-[#111111] font-semibold"
@@ -117,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenC
                         {item.badge}
                       </span>
                     )}
-                  </button>
+                  </a>
                 );
               })}
             </nav>
@@ -163,9 +164,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenC
                       currentPage === item.id ||
                       (item.id === "training" && currentPage === "education");
                     return (
-                      <button
+                      <a
                         key={item.id}
-                        onClick={() => handleNavClick(item.id)}
+                        href={item.id === "home" ? "/" : item.id === "services" ? "/services" : `/${item.id}`}
+                        onClick={(event) => { event.preventDefault(); handleNavClick(item.id); }}
                         className={`w-full px-3 py-3 rounded-xl text-xs uppercase tracking-wider font-semibold text-left flex items-center justify-between transition-colors min-h-[44px] ${
                           isActive
                             ? "bg-[#111111] text-[#D4AF37]"
@@ -178,7 +180,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenC
                             {item.badge}
                           </span>
                         )}
-                      </button>
+                      </a>
                     );
                   })}
                 </div>

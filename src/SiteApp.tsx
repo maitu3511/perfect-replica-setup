@@ -33,7 +33,6 @@ import {
 } from "./data/serviceRoutes";
 import { ServiceLandingPage } from "./pages/ServiceLandingPage";
 import { PageType, ServiceItem, ServiceCategory } from "./types";
-import { preloadSiteImages } from "./utils/imagePreloader";
 
 export interface SiteAppProps {
   /** When rendered from a dedicated SEO route (e.g. /services/seo) */
@@ -88,18 +87,7 @@ function AppContent({
   const [portfolioCategory, setPortfolioCategory] = useState<string>("All");
   const [serviceTargetId, setServiceTargetId] = useState<string | null>(null);
 
-  // Preload site images progressively without blocking initial page render
   useEffect(() => {
-    if ("requestIdleCallback" in window) {
-      (
-        window as unknown as {
-          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => void;
-        }
-      ).requestIdleCallback(() => preloadSiteImages(), { timeout: 1000 });
-    } else {
-      setTimeout(() => preloadSiteImages(), 200);
-    }
-
     // Global listener for inquiry modal
     const handleInquiryEvent = (e?: Event) => {
       const customEvt = e as CustomEvent<{ serviceName?: string }>;
@@ -161,33 +149,51 @@ function AppContent({
       }
     };
 
-    if (isStandaloneRoute) return;
-
     if (window.location.hash) {
-      handleHashChange();
+      // Preserve old shared links while canonical page links use real paths.
+      const oldPage = window.location.hash.slice(1).toLowerCase();
+      if (oldPage && PAGE_SEO_CONFIG[oldPage] && oldPage !== "admin") {
+        window.history.replaceState(null, "", `/${oldPage}`);
+        setCurrentPage(oldPage as PageType);
+      } else if (!isStandaloneRoute) {
+        handleHashChange();
+      }
     }
 
     window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    const handleHistoryChange = () => {
+      const path = window.location.pathname.slice(1);
+      if (path === "" || path === "services" || PAGE_SEO_CONFIG[path]) {
+        setCurrentPage((path || "home") as PageType);
+      }
+    };
+    window.addEventListener("popstate", handleHistoryChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("popstate", handleHistoryChange);
+    };
   }, [isStandaloneRoute]);
 
   const handleNavigate = (page: PageType) => {
     if (page !== "services") {
       setServiceTargetId(null);
     }
-    // Dedicated SEO routes (e.g. /services/seo) hand navigation back to the
-    // main app URL so behaviour stays identical to the original site.
-    if (isStandaloneRoute) {
+    // Use an address per page so links can be opened directly and indexed.
+    if (page !== "admin" && isStandaloneRoute) {
       if (page === "services") {
         window.location.href = "/services";
       } else {
-        window.location.href = `/${page === "home" ? "" : `#${page}`}`;
+        window.location.href = page === "home" ? "/" : `/${page}`;
       }
-      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
     setCurrentPage(page);
-    window.location.hash = page === "home" ? "" : page;
+    if (page !== "admin") {
+      const path = page === "home" ? "/" : `/${page}`;
+      window.history.pushState(null, "", path);
+    } else {
+      window.location.hash = page;
+    }
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -199,17 +205,17 @@ function AppContent({
     }
     setServiceTargetId(targetPayload);
     setCurrentPage("services");
-    window.location.hash = "services";
+    window.history.pushState(null, "", "/services");
   };
 
   const handleNavigatePortfolio = (category: "Websites" | "SEO" | "All") => {
     if (isStandaloneRoute) {
-      window.location.href = "/#portfolio";
+      window.location.href = "/portfolio";
       return;
     }
     setPortfolioCategory(category);
     setCurrentPage("portfolio");
-    window.location.hash = "portfolio";
+    window.history.pushState(null, "", "/portfolio");
     setTimeout(() => {
       const el = document.getElementById("portfolio-section");
       if (el) {
@@ -235,7 +241,7 @@ function AppContent({
     if (isStandaloneRoute) {
       window.location.href = "/services";
     } else {
-      window.location.hash = "services";
+      window.history.pushState(null, "", "/services");
     }
   };
 

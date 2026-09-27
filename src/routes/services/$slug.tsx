@@ -1,4 +1,4 @@
-import { createFileRoute, ClientOnly, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import SiteApp from "../../SiteApp";
 import { getServiceRoute, getServiceCanonical } from "../../data/serviceRoutes";
 
@@ -31,8 +31,6 @@ export const Route = createFileRoute("/services/$slug")({
 function ServiceRoute() {
   const { slug } = Route.useParams();
   return (
-    <ClientOnly fallback={<div className="min-h-screen bg-white" />}>
-      <SiteApp initialPage="services" initialCategorySlug={slug} serviceRouteSlug={slug} />
-    </ClientOnly>
+    <SiteApp initialPage="services" initialCategorySlug={slug} serviceRouteSlug={slug} />
   );
 }

@@ -169,11 +169,6 @@ export const WEBSITE_SCHEMA = {
   publisher: {
     "@id": "https://digibasera.com/#organization",
   },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: "https://digibasera.com/#services?q={search_term_string}",
-    "query-input": "required name=search_term_string",
-  },
 };
 
 /**
@@ -724,7 +719,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Digital Marketing & Custom Web Development Services | DigiBasera Rajkot",
     description:
       "Explore 11 specialized digital growth disciplines: Technical SEO, Google Ads PPC, Meta Ads, Custom React/Next.js Web Design, Shopify E-Commerce, and Social Media Marketing in Rajkot, Gujarat.",
-    canonical: "https://digibasera.com/#services",
+    canonical: "https://digibasera.com/services",
     keywords:
       "Digital Marketing Services Rajkot, SEO Services Gujarat, Google Ads PPC Management, Custom Web Development Rajkot, Shopify Developer Gujarat, Meta Ads Agency India, Social Media Marketing Packages Rajkot, Local SEO Services",
   },
@@ -732,7 +727,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Portfolio & Verified Client Websites Showcase | DigiBasera Rajkot",
     description:
       "Explore live verified client websites (ABFI Interior, Super India Interior, Premium Pack Co), high-engagement social media campaigns, and Google Page 1 ranking case studies.",
-    canonical: "https://digibasera.com/#portfolio",
+    canonical: "https://digibasera.com/portfolio",
     keywords:
       "DigiBasera Portfolio, Verified Client Websites Rajkot, ABFI Interior, Super India Interior, Premium Pack Co, Web Design Case Studies Gujarat, Digital Marketing Results India",
   },
@@ -740,7 +735,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Transparent Digital Marketing Packages & Pricing | DigiBasera Rajkot",
     description:
       "Clear, ROI-backed digital marketing packages and website development pricing starting at ₹9,999/mo for ambitious businesses in Rajkot, Gujarat, and across India.",
-    canonical: "https://digibasera.com/#pricing",
+    canonical: "https://digibasera.com/pricing",
     keywords:
       "Digital Marketing Pricing Rajkot, SEO Packages Gujarat, Website Development Cost India, Social Media Marketing Pricing, Google Ads Management Fee, Affordable Digital Marketing Agency",
   },
@@ -748,7 +743,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Our 5-Stage Performance Growth Methodology | DigiBasera",
     description:
       "Discover DigiBasera’s proven 5-stage framework: Discovery & Technical Audit, Strategy Blueprint, Rapid Web Deployment, Real-Time Optimization, and Scaled Revenue Dominance.",
-    canonical: "https://digibasera.com/#process",
+    canonical: "https://digibasera.com/process",
     keywords:
       "Digital Marketing Process, SEO Strategy Framework, Conversion Rate Optimization Methodology, Performance Marketing Blueprint, ROI Growth System Rajkot",
   },
@@ -756,7 +751,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "About DigiBasera | Leading Digital Marketing Agency in Rajkot, Gujarat",
     description:
       "Learn about DigiBasera’s mission, our founder Firasat Ali, and our team of senior SEO strategists, web developers, and performance marketers driving digital excellence in Rajkot, Gujarat.",
-    canonical: "https://digibasera.com/#about",
+    canonical: "https://digibasera.com/about",
     keywords:
       "About DigiBasera, Digital Marketing Agency Rajkot, Firasat Ali DigiBasera, Marketing Specialists Gujarat, Web Development Team Rajkot, Technology Company Profile",
   },
@@ -764,7 +759,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Practical Digital Marketing Training Course in Rajkot | Zinmatt & DigiBasera",
     description:
       "Master industry-standard SEO, Google Ads, Meta Ads, AI Marketing Tools, and live client projects with 100% placement support at Zinmatt Digital Marketing Academy in Rajkot.",
-    canonical: "https://digibasera.com/#training",
+    canonical: "https://digibasera.com/training",
     keywords:
       "Digital Marketing Course in Rajkot, SEO Training Rajkot, Social Media Marketing Course Gujarat, Zinmatt Academy Rajkot, Practical Digital Marketing Certification with Placement",
   },
@@ -772,7 +767,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Practical Digital Marketing Training Course in Rajkot | Zinmatt & DigiBasera",
     description:
       "Master industry-standard SEO, Google Ads, Meta Ads, AI Marketing Tools, and live client projects with 100% placement support at Zinmatt Digital Marketing Academy in Rajkot.",
-    canonical: "https://digibasera.com/#training",
+    canonical: "https://digibasera.com/training",
     keywords:
       "Digital Marketing Course in Rajkot, SEO Training Rajkot, Social Media Marketing Course Gujarat, Zinmatt Academy Rajkot, Practical Digital Marketing Certification with Placement",
   },
@@ -780,7 +775,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Careers & Open Positions in Rajkot | Join DigiBasera Digital Agency",
     description:
       "Join our high-performing team in Rajkot. Openings for SEO Specialists, Frontend React Developers, Google/Meta Ads Managers, and Creative Graphic Designers.",
-    canonical: "https://digibasera.com/#careers",
+    canonical: "https://digibasera.com/careers",
     keywords:
       "Digital Marketing Jobs Rajkot, Web Developer Vacancies Gujarat, SEO Specialist Jobs Rajkot, Graphic Designer Careers, DigiBasera Hiring",
   },
@@ -788,7 +783,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Digital Growth Insights, SEO Strategies & Marketing Blog | DigiBasera",
     description:
       "Actionable digital marketing strategies, local SEO blueprints, Google algorithm updates, and web development best practices written by DigiBasera specialists.",
-    canonical: "https://digibasera.com/#blog",
+    canonical: "https://digibasera.com/blog",
     keywords:
       "Digital Marketing Blog Gujarat, SEO Tips India, Local SEO Guide Rajkot, Google Ads Optimization Strategies, E-Commerce Growth Blog",
   },
@@ -796,7 +791,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Contact DigiBasera | Free Growth Audit & Strategy Consultation in Rajkot",
     description:
       "Get in touch with DigiBasera for a free digital marketing audit, website quotation, or growth strategy session. Located at DigiBasera, Chandresh Nagar Main Road, Mayani Chowk, Opposite Backbone Shopping Center, Rajkot - 360004.",
-    canonical: "https://digibasera.com/#contact",
+    canonical: "https://digibasera.com/contact",
     keywords:
       "Contact DigiBasera, Digital Marketing Agency Phone Rajkot, Office Address Chandresh Nagar Mayani Chowk Opposite Backbone Shopping Center Rajkot, Request Free Digital Audit, Phone +91 98987 78047",
   },
@@ -804,7 +799,7 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Areas We Serve in Rajkot, Gujarat & Pan-India | DigiBasera",
     description:
       "Explore the geographic areas and cities DigiBasera serves with high-ROI digital marketing, SEO, Google Ads, and custom website development across Gujarat and India.",
-    canonical: "https://digibasera.com/#areas-we-serve",
+    canonical: "https://digibasera.com/areas-we-serve",
     keywords:
       "Digital Marketing Agency Rajkot, SEO Services Ahmedabad, Digital Marketing Surat, Web Design Vadodara, Digital Agency Gujarat, Pan-India Digital Marketing",
   },
@@ -812,14 +807,14 @@ export const PAGE_SEO_CONFIG: Record<
     title: "Terms & Conditions of Service | DigiBasera Rajkot",
     description:
       "Terms and conditions of service for DigiBasera digital marketing and web technology agency.",
-    canonical: "https://digibasera.com/#terms",
+    canonical: "https://digibasera.com/terms",
     keywords: "Terms, Service Agreement, DigiBasera Rajkot",
   },
   privacy: {
     title: "Privacy Policy & Data Protection | DigiBasera",
     description:
       "Privacy policy and client data protection principles of DigiBasera digital marketing agency.",
-    canonical: "https://digibasera.com/#privacy",
+    canonical: "https://digibasera.com/privacy",
     keywords: "Privacy Policy, Data Protection, DigiBasera Rajkot",
   },
   admin: {

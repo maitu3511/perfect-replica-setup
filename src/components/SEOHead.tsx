@@ -38,7 +38,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   canonical,
   keywords,
   ogType = "website",
-  ogImage = SEO_CONFIG.ogImage,
+  ogImage,
   serviceSchema,
   serviceBreadcrumbSchema,
 }) => {
@@ -82,14 +82,14 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     setMeta("og:url", finalCanonical, true);
     setMeta("og:type", ogType, true);
     setMeta("og:site_name", SEO_CONFIG.siteName, true);
-    setMeta("og:image", ogImage, true);
+    if (ogImage) setMeta("og:image", ogImage, true);
     setMeta("og:locale", "en_IN", true);
 
     // Twitter Card
     setMeta("twitter:card", "summary_large_image");
     setMeta("twitter:title", finalTitle);
     setMeta("twitter:description", finalDesc);
-    setMeta("twitter:image", ogImage);
+    if (ogImage) setMeta("twitter:image", ogImage);
 
     // Geographic Meta for Local Rajkot & Gujarat Dominance
     setMeta("geo.region", "IN-GJ");

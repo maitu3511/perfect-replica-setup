@@ -155,7 +155,7 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         poster={poster || undefined}
         disablePictureInPicture
         aria-hidden="true"

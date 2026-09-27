@@ -188,6 +188,8 @@ export const Hero: React.FC<HeroProps> = ({
           src={heroCursorRevealAsset.url}
           alt=""
           className="w-full h-full object-cover object-center"
+          loading="lazy"
+          fetchPriority="low"
           decoding="async"
         />
         <div className="absolute inset-0 bg-background/35" />
