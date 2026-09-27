@@ -125,10 +125,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "dns-prefetch", href: "https://images.unsplash.com" },
-      { rel: "preconnect", href: "https://images.unsplash.com", crossOrigin: "anonymous" },
-      { rel: "dns-prefetch", href: "https://maps.google.com" },
-      { rel: "preconnect", href: "https://maps.google.com" },
       {
         rel: "preload",
         href: "/fonts/Fonarto.ttf",
@@ -139,13 +135,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "preload",
         href: "/fonts/GlacialIndifference-Regular.woff",
-        as: "font",
-        type: "font/woff",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "preload",
-        href: "/fonts/GlacialIndifference-Bold.woff",
         as: "font",
         type: "font/woff",
         crossOrigin: "anonymous",

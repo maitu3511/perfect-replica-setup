@@ -33,7 +33,6 @@ import {
 } from "./data/serviceRoutes";
 import { ServiceLandingPage } from "./pages/ServiceLandingPage";
 import { PageType, ServiceItem, ServiceCategory } from "./types";
-import { preloadSiteImages } from "./utils/imagePreloader";
 
 export interface SiteAppProps {
   /** When rendered from a dedicated SEO route (e.g. /services/seo) */
@@ -88,18 +87,7 @@ function AppContent({
   const [portfolioCategory, setPortfolioCategory] = useState<string>("All");
   const [serviceTargetId, setServiceTargetId] = useState<string | null>(null);
 
-  // Preload site images progressively without blocking initial page render
   useEffect(() => {
-    if ("requestIdleCallback" in window) {
-      (
-        window as unknown as {
-          requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => void;
-        }
-      ).requestIdleCallback(() => preloadSiteImages(), { timeout: 1000 });
-    } else {
-      setTimeout(() => preloadSiteImages(), 200);
-    }
-
     // Global listener for inquiry modal
     const handleInquiryEvent = (e?: Event) => {
       const customEvt = e as CustomEvent<{ serviceName?: string }>;

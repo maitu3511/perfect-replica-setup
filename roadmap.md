@@ -19,3 +19,6 @@
 - [x] Add six wedding creative image samples
 - [x] Reveal an About-style colourful image around the cursor on the home hero without changing existing content or animations
 - [x] Apply Fonarto to main headings and Glacial Indifference to subheadings, paragraphs, and remaining text without other visual changes
+- [ ] Reduce image/font/media requests on first load without changing the design
+- [ ] Make content pages indexable with accurate metadata, sitemap, and crawlable navigation
+- [ ] Verify page rendering and load behavior on desktop and mobile
